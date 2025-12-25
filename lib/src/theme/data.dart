@@ -36,6 +36,8 @@ import 'package:shadcn_ui/src/theme/components/textarea.dart';
 import 'package:shadcn_ui/src/theme/components/time_picker.dart';
 import 'package:shadcn_ui/src/theme/components/toast.dart';
 import 'package:shadcn_ui/src/theme/components/tooltip.dart';
+import 'package:shadcn_ui/src/theme/icons/base.dart';
+import 'package:shadcn_ui/src/theme/icons/lucide_icons.dart';
 import 'package:shadcn_ui/src/theme/text_theme/theme.dart';
 import 'package:shadcn_ui/src/theme/themes/base.dart';
 import 'package:shadcn_ui/src/theme/themes/default_theme_no_secondary_border_variant.dart';
@@ -53,6 +55,10 @@ class ShadThemeData extends ShadBaseTheme with _$ShadThemeData {
     /// The color scheme to use for the theme.
     /// Defaults to [ShadSlateColorScheme] based on the [brightness].
     ShadColorScheme? colorScheme,
+
+    /// The icons to use for the theme.
+    /// Defaults to [ShadLucideIcons].
+    ShadIcons? icons,
 
     /// The overall brightness of the theme, defaults to [Brightness.light].
     Brightness? brightness,
@@ -125,6 +131,7 @@ class ShadThemeData extends ShadBaseTheme with _$ShadThemeData {
           Brightness.light => const ShadSlateColorScheme.light(),
           Brightness.dark => const ShadSlateColorScheme.dark(),
         };
+    final effectiveIcons = icons ?? const ShadLucideIcons();
 
     final effectiveVariant =
         variant ??
@@ -142,6 +149,7 @@ class ShadThemeData extends ShadBaseTheme with _$ShadThemeData {
         };
 
     return ShadThemeData._internal(
+      icons: effectiveIcons,
       colorScheme: effectiveColorScheme,
       brightness: effectiveBrightness,
       primaryButtonTheme: effectiveVariant.primaryButtonTheme().merge(
@@ -245,6 +253,7 @@ class ShadThemeData extends ShadBaseTheme with _$ShadThemeData {
 
   const ShadThemeData._internal({
     required super.colorScheme,
+    required super.icons,
     required super.brightness,
     required super.primaryButtonTheme,
     required super.secondaryButtonTheme,

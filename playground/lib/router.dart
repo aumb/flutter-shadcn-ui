@@ -14,6 +14,7 @@ import 'package:playground/pages/dialog.dart';
 import 'package:playground/pages/divider.dart';
 import 'package:playground/pages/form.dart';
 import 'package:playground/pages/icon_button.dart';
+import 'package:playground/pages/icon_pack.dart';
 import 'package:playground/pages/input.dart';
 import 'package:playground/pages/input_otp.dart';
 import 'package:playground/pages/menubar.dart';
@@ -50,6 +51,10 @@ extension on GoRouterState {
 final router = GoRouter(
   debugLogDiagnostics: true,
   routes: [
+    GoRoute(
+      path: '/icon-pack',
+      builder: (context, state) => const IconPackPage(),
+    ),
     GoRoute(
       path: '/button',
       builder: (context, state) {

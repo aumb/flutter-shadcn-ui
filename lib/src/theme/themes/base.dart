@@ -35,6 +35,7 @@ import 'package:shadcn_ui/src/theme/components/textarea.dart';
 import 'package:shadcn_ui/src/theme/components/time_picker.dart';
 import 'package:shadcn_ui/src/theme/components/toast.dart';
 import 'package:shadcn_ui/src/theme/components/tooltip.dart';
+import 'package:shadcn_ui/src/theme/icons/base.dart';
 import 'package:shadcn_ui/src/theme/text_theme/theme.dart';
 import 'package:shadcn_ui/src/utils/gesture_detector.dart';
 import 'package:shadcn_ui/src/utils/responsive.dart';
@@ -43,6 +44,7 @@ import 'package:shadcn_ui/src/utils/responsive.dart';
 abstract class ShadBaseTheme {
   const ShadBaseTheme({
     required this.colorScheme,
+    required this.icons,
     required this.brightness,
     required this.primaryButtonTheme,
     required this.secondaryButtonTheme,
@@ -99,6 +101,7 @@ abstract class ShadBaseTheme {
   });
 
   final ShadColorScheme colorScheme;
+  final ShadIcons icons;
   final Brightness brightness;
   final ShadButtonTheme primaryButtonTheme;
   final ShadButtonTheme secondaryButtonTheme;
@@ -204,4 +207,5 @@ abstract class ShadThemeVariant {
   ShadSonnerTheme sonnerTheme();
   ShadTextareaTheme textareaTheme();
   ShadDefaultKeyboardToolbarTheme defaultKeyboardToolbarTheme();
+  ShadIcons icons();
 }

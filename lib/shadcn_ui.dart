@@ -124,6 +124,11 @@ export 'src/theme/components/time_picker.dart';
 export 'src/theme/components/toast.dart';
 export 'src/theme/components/tooltip.dart';
 export 'src/theme/data.dart';
+// Icons
+export 'src/theme/icons/base.dart';
+export 'src/theme/icons/huge_icons.dart';
+export 'src/theme/icons/lucide_icons.dart';
+
 export 'src/theme/text_theme/text_styles_default.dart';
 export 'src/theme/text_theme/theme.dart';
 export 'src/theme/theme.dart';

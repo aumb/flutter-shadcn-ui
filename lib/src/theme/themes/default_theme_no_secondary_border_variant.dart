@@ -40,6 +40,8 @@ import 'package:shadcn_ui/src/theme/components/textarea.dart';
 import 'package:shadcn_ui/src/theme/components/time_picker.dart';
 import 'package:shadcn_ui/src/theme/components/toast.dart';
 import 'package:shadcn_ui/src/theme/components/tooltip.dart';
+import 'package:shadcn_ui/src/theme/icons/base.dart';
+import 'package:shadcn_ui/src/theme/icons/lucide_icons.dart';
 import 'package:shadcn_ui/src/theme/text_theme/text_styles_default.dart';
 import 'package:shadcn_ui/src/theme/text_theme/theme.dart';
 import 'package:shadcn_ui/src/theme/themes/base.dart';
@@ -1111,4 +1113,7 @@ class ShadDefaultThemeNoSecondaryBorderVariant extends ShadThemeVariant {
       showPreviousButton: true,
     );
   }
+
+  @override
+  ShadIcons icons() => const ShadLucideIcons();
 }
