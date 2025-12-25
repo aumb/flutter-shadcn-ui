@@ -1410,7 +1410,9 @@ class _ShadOptionState<T> extends State<ShadOption<T>> {
             padding: const EdgeInsets.only(right: 8),
             child: theme.icons.check(
               size: 16,
-              color: theme.colorScheme.popoverForeground,
+              color:
+                  theme.optionTheme.selectedIconColor ??
+                  theme.colorScheme.popoverForeground,
             ),
           ),
     );

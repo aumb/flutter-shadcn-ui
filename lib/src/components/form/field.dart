@@ -65,7 +65,7 @@ class ShadFormBuilderField<T> extends FormField<T> {
   /// An optional identifier used to reference the field within a [ShadForm].
   /// Enables form data retrieval or field manipulation post-submission.
   /// {@endtemplate}
-  final Object? id;
+  final String? id;
 
   /// {@template ShadFormBuilderField.focusNode}
   /// The focus node for keyboard navigation and focus handling.
@@ -160,7 +160,7 @@ class ShadFormBuilderFieldState<F extends ShadFormBuilderField<T>, T>
   bool get hasError => forceErrorText != null || super.hasError;
 
   /// Sets an internal error message that overrides validation errors.
-  void setInternalError(String? error) {
+  void setError(String? error) {
     setState(() {
       _forceErrorText = error;
     });
@@ -203,7 +203,7 @@ class ShadFormBuilderFieldState<F extends ShadFormBuilderField<T>, T>
     }
 
     if (widget.readOnly != oldWidget.readOnly) {
-      _focusNode?.canRequestFocus = widget.readOnly;
+      _focusNode?.canRequestFocus = !widget.readOnly;
     }
   }
 
@@ -250,16 +250,16 @@ class ShadFormBuilderFieldState<F extends ShadFormBuilderField<T>, T>
     if (_parentForm != null) {
       if (enabled) {
         if (widget.id != null) {
-          _parentForm!.setInternalFieldValue<T>(widget.id!, value);
+          _parentForm!.setFieldValue<T>(widget.id!, value, notifyField: false);
         }
         return;
       }
-      if (widget.id != null) _parentForm!.removeInternalFieldValue(widget.id!);
+      if (widget.id != null) _parentForm!.removeFieldValue(widget.id!);
     }
   }
 
   /// Registers the field’s value transformer with the provided map.
-  void registerTransformer(Map<Object, Function> map) {
+  void registerTransformer(Map<String, Function> map) {
     if (widget.id == null) return;
     final fun = widget.valueTransformer;
     if (fun != null) {

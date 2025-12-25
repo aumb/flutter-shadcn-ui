@@ -1,3 +1,27 @@
+## 0.43.0
+
+- **BREAKING CHANGE**: Rename `icon` into `leading` in `ShadDatePicker` and `ShadDatePickerFormField` and add `trailing`.
+
+## 0.42.1
+
+- **CHORE**: Add `selectedIconColor` to `ShadOptionTheme` to allow customizing the color of the selected icon.
+
+## 0.42.0
+
+- **BREAKING CHANGE**: The old `setValue` has been renamed into `setFieldValue` to better reflect its purpose, and now accepts a `notifyField` boolean parameter (defaults to `true`) to control whether to notify the form field of the value change.
+- **BREAKING CHANGE**: `ShadFormBuilderFieldState.setInternalError` has been renamed into `setError` for consistency.
+- **BREAKING CHANGE**: `ShadFormState.removeInternalFieldValue` has been renamed into `removeFieldValue` for consistency.
+- **BREAKING CHANGE**: Now `setValue` takes a `Map<String, dynamic>` as value and updates the entire form value. It also accepts a `notifyFields` boolean parameter (defaults to `true`) to control whether to notify the changed form fields of the value changes.
+
+## 0.41.0
+
+- **FEAT**: Add `setValue` to `ShadForm` to manipulate the value of a form field programmatically.
+- **BREAKING CHANGE**: The map stored by `ShadForm` now uses `String` as a key instead of `Object`. Every form field `id` must be a `String` now. This change was made for convenience with JSON serialization.
+
+## 0.40.6
+
+- **FIX**: Add `maxLength` parameter to `ShadTextarea` (thanks to @mickey35vn).
+
 ## 0.40.5
 
 - **FIX**: `ShadSonner` height normalization for stacked toasts with different heights.
