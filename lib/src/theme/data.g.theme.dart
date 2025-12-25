@@ -27,6 +27,7 @@ mixin _$ShadThemeData {
 
     return ShadThemeData(
       colorScheme: ShadColorScheme.lerp(a.colorScheme, b.colorScheme, t),
+      icons: t < 0.5 ? a.icons : b.icons,
       brightness: t < 0.5 ? a.brightness : b.brightness,
       primaryButtonTheme: ShadButtonTheme.lerp(
         a.primaryButtonTheme,
@@ -207,6 +208,7 @@ mixin _$ShadThemeData {
 
   ShadThemeData copyWith({
     ShadColorScheme? colorScheme,
+    ShadIcons? icons,
     Brightness? brightness,
     ShadButtonTheme? primaryButtonTheme,
     ShadButtonTheme? secondaryButtonTheme,
@@ -265,6 +267,7 @@ mixin _$ShadThemeData {
 
     return ShadThemeData(
       colorScheme: colorScheme ?? _this.colorScheme,
+      icons: icons ?? _this.icons,
       brightness: brightness ?? _this.brightness,
       primaryButtonTheme: primaryButtonTheme ?? _this.primaryButtonTheme,
       secondaryButtonTheme: secondaryButtonTheme ?? _this.secondaryButtonTheme,
@@ -340,6 +343,7 @@ mixin _$ShadThemeData {
 
     return copyWith(
       colorScheme: other.colorScheme,
+      icons: other.icons,
       brightness: other.brightness,
       primaryButtonTheme: _this.primaryButtonTheme.merge(
         other.primaryButtonTheme,
@@ -430,6 +434,7 @@ mixin _$ShadThemeData {
     final _other = (other as ShadThemeData);
 
     return _other.colorScheme == _this.colorScheme &&
+        _other.icons == _this.icons &&
         _other.brightness == _this.brightness &&
         _other.primaryButtonTheme == _this.primaryButtonTheme &&
         _other.secondaryButtonTheme == _this.secondaryButtonTheme &&
@@ -492,6 +497,7 @@ mixin _$ShadThemeData {
     return Object.hashAll([
       runtimeType,
       _this.colorScheme,
+      _this.icons,
       _this.brightness,
       _this.primaryButtonTheme,
       _this.secondaryButtonTheme,
