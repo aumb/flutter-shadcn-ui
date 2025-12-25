@@ -1029,9 +1029,12 @@ class _ShadDatePickerState extends State<ShadDatePicker> {
     final effectiveButtonTextStyle =
         widget.buttonTextStyle ?? theme.datePickerTheme.buttonTextStyle;
 
-    final defaultIcon = Icon(
-      widget.iconData ?? theme.datePickerTheme.iconData ?? LucideIcons.calendar,
-    );
+    final effectiveIconData = widget.iconData ?? theme.datePickerTheme.iconData;
+    final defaultIcon = effectiveIconData != null
+        ? Icon(
+            effectiveIconData,
+          )
+        : theme.icons.calendar();
     final effectiveLeading = widget.trailing == null || widget.leading != null
         ? IconTheme.merge(
             data: IconThemeData(
