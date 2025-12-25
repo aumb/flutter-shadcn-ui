@@ -138,19 +138,21 @@ class ShadThemeData extends ShadBaseTheme with _$ShadThemeData {
         switch (effectiveDisableSecondaryBorder) {
           false => ShadDefaultThemeVariant(
             colorScheme: effectiveColorScheme,
+            icons: effectiveIcons,
             radius: effectiveRadius,
             effectiveTextTheme: effectiveTextTheme,
           ),
           true => ShadDefaultThemeNoSecondaryBorderVariant(
             colorScheme: effectiveColorScheme,
+            icons: effectiveIcons,
             radius: effectiveRadius,
             effectiveTextTheme: effectiveTextTheme,
           ),
         };
 
     return ShadThemeData._internal(
-      icons: effectiveIcons,
       colorScheme: effectiveColorScheme,
+      icons: effectiveIcons,
       brightness: effectiveBrightness,
       primaryButtonTheme: effectiveVariant.primaryButtonTheme().merge(
         primaryButtonTheme,

@@ -207,5 +207,4 @@ abstract class ShadThemeVariant {
   ShadSonnerTheme sonnerTheme();
   ShadTextareaTheme textareaTheme();
   ShadDefaultKeyboardToolbarTheme defaultKeyboardToolbarTheme();
-  ShadIcons icons();
 }
