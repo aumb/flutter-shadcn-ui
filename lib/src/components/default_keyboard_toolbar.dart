@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shadcn_ui/src/components/button.dart';
 import 'package:shadcn_ui/src/components/icon_button.dart';
 import 'package:shadcn_ui/src/theme/theme.dart';
@@ -79,14 +78,14 @@ class ShadDefaultKeyboardToolbar extends StatelessWidget {
           children: [
             if (effectiveShowPreviousButton)
               ShadIconButton.ghost(
-                icon: const Icon(LucideIcons.chevronUp),
+                icon: theme.icons.up(),
                 onPressed: () {
                   FocusScope.of(context).previousFocus();
                 },
               ),
             if (effectiveShowNextButton)
               ShadIconButton.ghost(
-                icon: const Icon(LucideIcons.chevronDown),
+                icon: theme.icons.down(),
                 onPressed: () {
                   FocusScope.of(context).nextFocus();
                 },

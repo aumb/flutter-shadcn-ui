@@ -3,11 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart' hide TextDirection;
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shadcn_ui/src/components/button.dart';
 import 'package:shadcn_ui/src/components/icon_button.dart';
 import 'package:shadcn_ui/src/components/select.dart';
 import 'package:shadcn_ui/src/theme/components/decorator.dart';
+import 'package:shadcn_ui/src/theme/icons/base.dart';
 import 'package:shadcn_ui/src/theme/theme.dart';
 import 'package:shadcn_ui/src/utils/border.dart';
 import 'package:shadcn_ui/src/utils/extensions/date_time.dart';
@@ -614,12 +614,12 @@ class ShadCalendar extends StatefulWidget {
   final double? navigationButtonIconSize;
 
   /// {@template ShadCalendar.backNavigationButtonIconData}
-  /// The back navigation button src, defaults to [LucideIcons.chevronLeft]
+  /// The back navigation button src, defaults to [ShadIcons.left]
   /// {@endtemplate}
   final IconData? backNavigationButtonIconData;
 
   /// {@template ShadCalendar.forwardNavigationButtonIconData}
-  /// The forward navigation button src, defaults to [LucideIcons.chevronRight]
+  /// The forward navigation button src, defaults to [ShadIcons.right]
   /// {@endtemplate}
   final IconData? forwardNavigationButtonIconData;
 
@@ -1217,13 +1217,11 @@ class _ShadCalendarState extends State<ShadCalendar> {
 
     final effectiveBackNavigationButtonSrc =
         widget.backNavigationButtonIconData ??
-        theme.calendarTheme.backNavigationButtonIconData ??
-        LucideIcons.chevronLeft;
+        theme.calendarTheme.backNavigationButtonIconData;
 
     final effectiveForwardNavigationButtonSrc =
         widget.forwardNavigationButtonIconData ??
-        theme.calendarTheme.forwardNavigationButtonIconData ??
-        LucideIcons.chevronRight;
+        theme.calendarTheme.forwardNavigationButtonIconData;
 
     final effectiveNavigationButtonPadding =
         widget.navigationButtonPadding ??
@@ -1466,6 +1464,13 @@ class _ShadCalendarState extends State<ShadCalendar> {
     final backButton = ValueListenableBuilder<bool>(
       valueListenable: backMonthButtonHovered,
       builder: (context, isHovered, _) {
+        final effectiveIcon = effectiveBackNavigationButtonSrc != null
+            ? Icon(
+                effectiveBackNavigationButtonSrc,
+                size: effectiveNavigationButtonIconSize,
+              )
+            : theme.icons.left(size: effectiveNavigationButtonIconSize);
+
         return Opacity(
           opacity: isHovered ? 1 : effectiveNavigationButtonDisabledOpacity,
           child: ShadIconButton.outline(
@@ -1474,10 +1479,7 @@ class _ShadCalendarState extends State<ShadCalendar> {
             padding: effectiveNavigationButtonPadding,
             enabled: !isFirstMonthDisplayed,
             onHoverChange: (hovered) => backMonthButtonHovered.value = hovered,
-            icon: Icon(
-              effectiveBackNavigationButtonSrc,
-              size: effectiveNavigationButtonIconSize,
-            ),
+            icon: effectiveIcon,
             onPressed: () => goToMonth(currentMonth.previousMonth),
           ),
         );
@@ -1487,6 +1489,13 @@ class _ShadCalendarState extends State<ShadCalendar> {
     final forwardButton = ValueListenableBuilder<bool>(
       valueListenable: forwardMonthButtonHovered,
       builder: (context, isHovered, _) {
+        final effectiveIcon = effectiveForwardNavigationButtonSrc != null
+            ? Icon(
+                effectiveForwardNavigationButtonSrc,
+                size: effectiveNavigationButtonIconSize,
+              )
+            : theme.icons.right(size: effectiveNavigationButtonIconSize);
+
         return Opacity(
           opacity: isHovered ? 1 : effectiveNavigationButtonDisabledOpacity,
           child: ShadIconButton.outline(
@@ -1497,10 +1506,7 @@ class _ShadCalendarState extends State<ShadCalendar> {
             onHoverChange: (hovered) =>
                 forwardMonthButtonHovered.value = hovered,
             onPressed: () => goToMonth(currentMonth.nextMonth),
-            icon: Icon(
-              effectiveForwardNavigationButtonSrc,
-              size: effectiveNavigationButtonIconSize,
-            ),
+            icon: effectiveIcon,
           ),
         );
       },

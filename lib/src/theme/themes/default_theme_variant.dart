@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shadcn_ui/src/components/button.dart';
 import 'package:shadcn_ui/src/raw_components/portal.dart';
 import 'package:shadcn_ui/src/theme/color_scheme/base.dart';
@@ -41,7 +40,6 @@ import 'package:shadcn_ui/src/theme/components/time_picker.dart';
 import 'package:shadcn_ui/src/theme/components/toast.dart';
 import 'package:shadcn_ui/src/theme/components/tooltip.dart';
 import 'package:shadcn_ui/src/theme/icons/base.dart';
-import 'package:shadcn_ui/src/theme/icons/lucide_icons.dart';
 import 'package:shadcn_ui/src/theme/text_theme/text_styles_default.dart';
 import 'package:shadcn_ui/src/theme/text_theme/theme.dart';
 import 'package:shadcn_ui/src/theme/themes/base.dart';
@@ -53,11 +51,13 @@ import 'package:shadcn_ui/src/utils/gesture_detector.dart';
 class ShadDefaultThemeVariant extends ShadThemeVariant {
   ShadDefaultThemeVariant({
     required this.colorScheme,
+    required this.icons,
     required this.radius,
     required this.effectiveTextTheme,
   });
 
   final ShadColorScheme colorScheme;
+  final ShadIcons icons;
   final BorderRadius radius;
   final ShadTextTheme effectiveTextTheme;
 
@@ -226,11 +226,7 @@ class ShadDefaultThemeVariant extends ShadThemeVariant {
   @override
   ShadBreadcrumbTheme breadcrumbTheme() {
     return ShadBreadcrumbTheme(
-      ellipsis: Icon(
-        LucideIcons.ellipsis,
-        size: 14,
-        color: colorScheme.mutedForeground,
-      ),
+      ellipsis: icons.ellipsis(size: 14, color: colorScheme.mutedForeground),
       spacing: 10,
       ellipsisSize: 16,
       separatorSize: 14,
@@ -531,7 +527,6 @@ class ShadDefaultThemeVariant extends ShadThemeVariant {
   ShadToastTheme primaryToastTheme() {
     return ShadToastTheme(
       alignment: Alignment.bottomRight,
-      closeIconData: LucideIcons.x,
       titleStyle: effectiveTextTheme.muted.copyWith(
         fontWeight: FontWeight.w500,
         color: colorScheme.foreground,
@@ -555,7 +550,6 @@ class ShadDefaultThemeVariant extends ShadThemeVariant {
   ShadToastTheme destructiveToastTheme() {
     return ShadToastTheme(
       alignment: Alignment.bottomRight,
-      closeIconData: LucideIcons.x,
       titleStyle: effectiveTextTheme.muted.copyWith(
         fontWeight: FontWeight.w500,
         color: colorScheme.destructiveForeground,
@@ -626,7 +620,6 @@ class ShadDefaultThemeVariant extends ShadThemeVariant {
   @override
   ShadDialogTheme primaryDialogTheme() {
     return ShadDialogTheme(
-      closeIconData: LucideIcons.x,
       radius: const BorderRadius.all(Radius.circular(8)),
       backgroundColor: colorScheme.background,
       removeBorderRadiusWhenTiny: true,
@@ -722,7 +715,6 @@ class ShadDefaultThemeVariant extends ShadThemeVariant {
     const bezierCurve = Cubic(0.87, 0, 0.13, 1);
     const duration = Duration(milliseconds: 300);
     return ShadAccordionTheme(
-      iconData: LucideIcons.chevronDown,
       padding: const EdgeInsets.symmetric(vertical: 16),
       underlineTitleOnHover: true,
       duration: duration,
@@ -880,8 +872,6 @@ class ShadDefaultThemeVariant extends ShadThemeVariant {
     ),
     navigationButtonSize: 28,
     navigationButtonIconSize: 16,
-    backNavigationButtonIconData: LucideIcons.chevronLeft,
-    forwardNavigationButtonIconData: LucideIcons.chevronRight,
     navigationButtonPadding: EdgeInsets.zero,
     navigationButtonDisabledOpacity: .5,
     decoration: ShadDecoration(
@@ -943,7 +933,6 @@ class ShadDefaultThemeVariant extends ShadThemeVariant {
       buttonVariant: ShadButtonVariant.outline,
       width: 276,
       mainAxisAlignment: MainAxisAlignment.start,
-      iconData: LucideIcons.calendar,
     );
   }
 
@@ -1089,7 +1078,4 @@ class ShadDefaultThemeVariant extends ShadThemeVariant {
       showPreviousButton: true,
     );
   }
-
-  @override
-  ShadIcons icons() => const ShadLucideIcons();
 }

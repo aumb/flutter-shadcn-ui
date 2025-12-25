@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shadcn_ui/src/components/icon_button.dart';
+import 'package:shadcn_ui/src/theme/icons/base.dart';
 import 'package:shadcn_ui/src/theme/theme.dart';
 import 'package:shadcn_ui/src/theme/themes/shadows.dart';
 import 'package:shadcn_ui/src/utils/animate.dart';
@@ -418,7 +418,8 @@ class ShadToast extends StatefulWidget {
 
   /// {@template ShadToast.closeIconData}
   /// The icon data for the close button.
-  /// Used if [closeIcon] is null; defaults to [LucideIcons.x] if not specified.
+  /// Used if [closeIcon] is null; defaults to [ShadIcons.close] if not
+  /// specified.
   /// {@endtemplate}
   final IconData? closeIconData;
 
@@ -577,17 +578,16 @@ class _ShadToastState extends State<ShadToast> {
       ShadToastVariant.primary => theme.colorScheme.foreground,
       ShadToastVariant.destructive => theme.colorScheme.destructiveForeground,
     };
+    final effectiveCloseIconData =
+        widget.closeIconData ?? effectiveToastTheme.closeIconData;
 
     final effectiveCloseIcon =
         widget.closeIcon ??
         effectiveToastTheme.closeIcon ??
         ShadIconButton.ghost(
-          icon: Icon(
-            size: 16,
-            widget.closeIconData ??
-                effectiveToastTheme.closeIconData ??
-                LucideIcons.x,
-          ),
+          icon: effectiveCloseIconData != null
+              ? Icon(size: 16, effectiveCloseIconData)
+              : theme.icons.close(size: 16),
           width: 20,
           height: 20,
           padding: EdgeInsets.zero,

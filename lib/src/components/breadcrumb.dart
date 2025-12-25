@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shadcn_ui/src/components/button.dart';
 import 'package:shadcn_ui/src/components/popover.dart';
 import 'package:shadcn_ui/src/raw_components/portal.dart';
@@ -276,8 +275,7 @@ class ShadBreadcrumbSeparator extends StatelessWidget {
         theme.breadcrumbTheme.separatorColor ??
         theme.colorScheme.mutedForeground;
 
-    return Icon(
-      LucideIcons.chevronRight,
+    return theme.icons.right(
       size: effectiveSeparatorSize,
       color: effectiveColor,
     );
@@ -309,8 +307,7 @@ class ShadBreadcrumbEllipsis extends StatelessWidget {
     final theme = ShadTheme.of(context);
     final effectiveSize = size ?? theme.breadcrumbTheme.ellipsisSize ?? 16.0;
 
-    return Icon(
-      LucideIcons.ellipsis,
+    return theme.icons.ellipsis(
       size: effectiveSize,
       color: theme.colorScheme.mutedForeground,
     );
@@ -481,8 +478,7 @@ class _ShadBreadcrumbDropdownState extends State<ShadBreadcrumbDropdown> {
               AnimatedRotation(
                 turns: controller.isOpen ? 0.5 : 0.0,
                 duration: const Duration(milliseconds: 200),
-                child: Icon(
-                  LucideIcons.chevronDown,
+                child: theme.icons.down(
                   size: theme.breadcrumbTheme.separatorSize ?? 14,
                   color: effectiveTextColor,
                 ),

@@ -5,7 +5,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shadcn_ui/src/components/disabled.dart';
 import 'package:shadcn_ui/src/components/input.dart';
 import 'package:shadcn_ui/src/components/popover.dart';
@@ -995,8 +994,7 @@ class ShadSelectState<T> extends State<ShadSelect<T>> {
 
     final effectiveTrailing =
         widget.trailing ??
-        Icon(
-          LucideIcons.chevronDown,
+        theme.icons.down(
           size: 16,
           color: theme.colorScheme.popoverForeground.withValues(alpha: .5),
         );
@@ -1025,8 +1023,7 @@ class ShadSelectState<T> extends State<ShadSelect<T>> {
                 focusNode: searchFocusNode,
                 leading: Padding(
                   padding: const EdgeInsets.only(right: 8),
-                  child: Icon(
-                    LucideIcons.search,
+                  child: theme.icons.search(
                     size: 16,
                     color: theme.colorScheme.popoverForeground,
                   ),
@@ -1163,8 +1160,7 @@ class ShadSelectState<T> extends State<ShadSelect<T>> {
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 4,
                                   ),
-                                  child: Icon(
-                                    LucideIcons.chevronUp,
+                                  child: theme.icons.up(
                                     size: 16,
                                     color: theme.colorScheme.popoverForeground,
                                   ),
@@ -1194,8 +1190,7 @@ class ShadSelectState<T> extends State<ShadSelect<T>> {
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 4,
                                   ),
-                                  child: Icon(
-                                    LucideIcons.chevronDown,
+                                  child: theme.icons.down(
                                     size: 16,
                                     color: theme.colorScheme.popoverForeground,
                                   ),
@@ -1413,8 +1408,7 @@ class _ShadOptionState<T> extends State<ShadOption<T>> {
           widget.selectedIcon ??
           Padding(
             padding: const EdgeInsets.only(right: 8),
-            child: Icon(
-              LucideIcons.check,
+            child: theme.icons.check(
               size: 16,
               color: theme.colorScheme.popoverForeground,
             ),

@@ -1,8 +1,8 @@
 import 'package:boxy/flex.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shadcn_ui/src/components/icon_button.dart';
+import 'package:shadcn_ui/src/theme/icons/base.dart';
 import 'package:shadcn_ui/src/theme/theme.dart';
 import 'package:shadcn_ui/src/theme/themes/shadows.dart';
 import 'package:shadcn_ui/src/utils/animate.dart';
@@ -360,7 +360,8 @@ class ShadDialog extends StatelessWidget {
 
   /// {@template ShadDialog.closeIconData}
   /// The icon data for the close button.
-  /// Used if [closeIcon] is null; defaults to [LucideIcons.x] if not specified.
+  /// Used if [closeIcon] is null; defaults to [ShadIcons.close] if not
+  /// specified.
   /// {@endtemplate}
   final IconData? closeIconData;
 
@@ -554,17 +555,21 @@ class ShadDialog extends StatelessWidget {
         effectiveDialogTheme.backgroundColor ??
         theme.colorScheme.background;
 
+    final effectiveCloseIconData =
+        closeIconData ?? effectiveDialogTheme.closeIconData;
+
     final effectiveCloseIcon =
         closeIcon ??
+        //TODO: come back to this
         (closeIconData == null && effectiveDialogTheme.closeIconData == null
             ? null
             : ShadIconButton.ghost(
-                icon: Icon(
-                  size: 16,
-                  closeIconData ??
-                      effectiveDialogTheme.closeIconData ??
-                      LucideIcons.x,
-                ),
+                icon: effectiveCloseIconData != null
+                    ? Icon(
+                        effectiveCloseIconData,
+                        size: 16,
+                      )
+                    : theme.icons.close(size: 16),
                 width: 20,
                 height: 20,
                 padding: EdgeInsets.zero,

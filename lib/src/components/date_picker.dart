@@ -4,12 +4,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart' as intl;
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shadcn_ui/src/components/button.dart';
 import 'package:shadcn_ui/src/components/calendar.dart';
 import 'package:shadcn_ui/src/components/popover.dart';
 import 'package:shadcn_ui/src/raw_components/portal.dart';
 import 'package:shadcn_ui/src/theme/components/decorator.dart';
+import 'package:shadcn_ui/src/theme/icons/base.dart';
 import 'package:shadcn_ui/src/theme/theme.dart';
 import 'package:shadcn_ui/src/utils/extensions/date_time.dart';
 import 'package:shadcn_ui/src/utils/extensions/text_style.dart';
@@ -771,7 +771,7 @@ class ShadDatePicker extends StatefulWidget {
   final Widget? icon;
 
   /// {@template ShadDatePicker.iconData}
-  /// The icon of the date picker button, defaults to [LucideIcons.calendar].
+  /// The icon of the date picker button, defaults to [ShadIcons.calendar].
   /// {@endtemplate}
   final IconData? iconData;
 
@@ -1023,6 +1023,24 @@ class _ShadDatePickerState extends State<ShadDatePicker> {
     final effectiveButtonTextStyle =
         widget.buttonTextStyle ?? theme.datePickerTheme.buttonTextStyle;
 
+    final effectiveIconData = widget.iconData ?? theme.datePickerTheme.iconData;
+    final effectiveIcon =
+        widget.icon ??
+        ((widget.iconData != null || theme.datePickerTheme.iconData != null)
+            ? Icon(
+                effectiveIconData,
+                size: 16,
+                color: isSelected
+                    ? theme.colorScheme.foreground
+                    : theme.colorScheme.mutedForeground,
+              )
+            : theme.icons.calendar(
+                size: 16,
+                color: isSelected
+                    ? theme.colorScheme.foreground
+                    : theme.colorScheme.mutedForeground,
+              ));
+
     return ShadPopover(
       controller: popoverController,
       groupId: effectiveGroupId,
@@ -1240,17 +1258,7 @@ class _ShadDatePickerState extends State<ShadDatePicker> {
             widget.mainAxisAlignment ??
             theme.datePickerTheme.mainAxisAlignment ??
             MainAxisAlignment.start,
-        leading:
-            widget.icon ??
-            Icon(
-              widget.iconData ??
-                  theme.datePickerTheme.iconData ??
-                  LucideIcons.calendar,
-              size: 16,
-              color: isSelected
-                  ? theme.colorScheme.foreground
-                  : theme.colorScheme.mutedForeground,
-            ),
+        leading: effectiveIcon,
         onPressed:
             widget.onPressed ??
             () {

@@ -54,6 +54,9 @@ class _IconPackPageState extends State<IconPackPage> {
               _buildIconPreview(modifiedTheme),
               const SizedBox(height: 32),
 
+              ShadDefaultKeyboardToolbar(),
+              const SizedBox(height: 32),
+
               // Accordion Section
               _buildSectionTitle('Accordion', modifiedTheme),
               _buildAccordionSection(),

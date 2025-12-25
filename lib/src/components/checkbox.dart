@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:shadcn_ui/src/components/disabled.dart';
 import 'package:shadcn_ui/src/raw_components/focusable.dart';
 import 'package:shadcn_ui/src/theme/components/decorator.dart';
@@ -177,8 +176,7 @@ class _ShadCheckboxState extends State<ShadCheckbox> {
 
     final effectiveIcon =
         widget.icon ??
-        Icon(
-          LucideIcons.check,
+        theme.icons.check(
           color: theme.colorScheme.primaryForeground,
           size: effectiveSize,
         );
